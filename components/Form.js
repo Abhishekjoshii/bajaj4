@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './Form.css'; 
 
 function Form() {
   const [inputData, setInputData] = useState("");
@@ -12,7 +11,7 @@ function Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    
+    // Simulated response data
     const simulatedResponse = {
       is_success: true,
       user_id: "ABHISHEK_JOSHI_22092024",
@@ -23,14 +22,14 @@ function Form() {
       highest_alphabet: [],
     };
 
-    
+    // Set the simulated response as the output
     setResponseData(JSON.stringify(simulatedResponse, null, 2));
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit} className="form">
-        <label className="form-label">
+    <div style={styles.formContainer}>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <label style={styles.label}>
           Input JSON Data:
           <textarea
             value={inputData}
@@ -38,21 +37,70 @@ function Form() {
             placeholder='Enter JSON like { "data": ["2", "4", "5", "92"] }'
             rows="4"
             cols="50"
-            className="form-textarea"
+            style={styles.textarea}
           />
         </label>
         <br />
-        <button type="submit" className="form-button">Submit</button>
+        <button type="submit" style={styles.button}>Submit</button>
       </form>
 
       {responseData && (
-        <div className="response-container">
+        <div style={styles.responseContainer}>
           <h3>Response:</h3>
-          <pre className="response-data">{responseData}</pre>
+          <pre style={styles.responseData}>{responseData}</pre>
         </div>
       )}
     </div>
   );
 }
+
+const styles = {
+  formContainer: {
+    maxWidth: '600px',
+    margin: '0 auto',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    backgroundColor: '#f9f9f9',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  label: {
+    fontSize: '1.2rem',
+    marginBottom: '10px',
+  },
+  textarea: {
+    width: '100%',
+    padding: '10px',
+    fontSize: '1rem',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    marginBottom: '15px',
+  },
+  button: {
+    padding: '10px',
+    fontSize: '1rem',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
+  buttonHover: {
+    backgroundColor: '#45a049',
+  },
+  responseContainer: {
+    marginTop: '20px',
+    padding: '10px',
+    backgroundColor: '#e8f4fc',
+    borderLeft: '5px solid #2196F3',
+  },
+  responseData: {
+    whiteSpace: 'pre-wrap',
+    wordWrap: 'break-word',
+  },
+};
 
 export default Form;
