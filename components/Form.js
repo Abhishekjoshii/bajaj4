@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Form.css'; 
 
 function Form() {
   const [inputData, setInputData] = useState("");
@@ -11,7 +12,7 @@ function Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Simulated response data
+    
     const simulatedResponse = {
       is_success: true,
       user_id: "ABHISHEK_JOSHI_22092024",
@@ -22,14 +23,14 @@ function Form() {
       highest_alphabet: [],
     };
 
-    // Set the simulated response as the output
+    
     setResponseData(JSON.stringify(simulatedResponse, null, 2));
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <label className="form-label">
           Input JSON Data:
           <textarea
             value={inputData}
@@ -37,16 +38,17 @@ function Form() {
             placeholder='Enter JSON like { "data": ["2", "4", "5", "92"] }'
             rows="4"
             cols="50"
+            className="form-textarea"
           />
         </label>
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" className="form-button">Submit</button>
       </form>
 
       {responseData && (
-        <div>
+        <div className="response-container">
           <h3>Response:</h3>
-          <pre>{responseData}</pre>
+          <pre className="response-data">{responseData}</pre>
         </div>
       )}
     </div>
